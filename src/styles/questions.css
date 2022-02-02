@@ -24,7 +24,8 @@
     background-color: rgba(224, 218, 211, 0.979);
     color:#920d0d;
     font-size:16px;
-    font-weight:600
+    font-weight:600;
+    border: 1px solid #920d0d !important;
 }
 
 .question{
@@ -44,8 +45,14 @@
     position:relative;
     /* float:right; */
     /* margin-right:-50%; */
-    width:auto
+    width:auto;
+    background-color: #920d0d;
+    border: #920d0d;
 
+}
+
+.next-btn:hover{
+    background-color: #ca1010;
 }
 
 .previous-btn{
@@ -81,3 +88,22 @@
     color:white !important
 }
 
+.start-quiz-btn{
+    border:2px solid #920d0d !important;
+    color:#920d0d !important
+}
+
+.start-quiz-btn:hover{
+    color:#706c6c !important
+
+}
+
+@media only screen and (max-width: 600px)  {
+
+    .ques-container{
+        width:100%
+    }
+    .card{
+        width:85% !important
+    }
+}

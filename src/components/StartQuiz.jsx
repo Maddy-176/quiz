@@ -1,6 +1,7 @@
 import React,{useState, useEffect,useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import "../styles/questions.css"
 
 function StartQuiz({isDisabled}) {
     const selectQuesCategory= useSelector(state=>state.ques.ques_category);
@@ -86,7 +87,7 @@ function StartQuiz({isDisabled}) {
   
   return <div>
      
-      <button  onClick={(e)=>handleRequest(e)} disabled={disableBtn}>Start Quiz</button>
+      <button  onClick={(e)=>handleRequest(e)} disabled={disableBtn} className="start-quiz-btn">Start Quiz</button>
   </div>;
 }
 
