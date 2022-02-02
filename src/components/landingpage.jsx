@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import "../styles/landingpage.css"
 import { useSelector, useDispatch } from 'react-redux'
 import StartQuizBtn from './StartQuiz';
+
 function Landingpage() {
 
     const [quizCategories, setQuizCategories]= useState(null);
+    const [isError, setIsError] = useState(true);
+    const [errorMsg, setErrorMsg] = useState("");
     const loading =  useSelector(state=>state.ques.loading);
     const selectQuesCategory= useSelector(state=>state.ques_category);
     const difficultyLvl= useSelector(state=>state.ques_difficulty);
@@ -22,12 +25,12 @@ function Landingpage() {
             })
           }
           handleLoading(true);
-
+         
         fetch(api)
         .then((result)=>result.json())
         .then((res)=>{setQuizCategories(res.trivia_categories)
         handleLoading(false)})
-        console.log(loading)
+        //console.log(loading)
     },[setQuizCategories,dispatch])
 
     const handleQuestionCategoryChange=(e)=>{
@@ -56,9 +59,31 @@ function Landingpage() {
             type:"CHANGE_AMOUNT",
             value:e.target.value
         })
+        //validateInput(e.target.value)
+
         
     }
 
+    // const validateInput=(value)=>{
+    //     if(value===undefined){
+    //         setErrorMsg("Number of Questions canot be empty")
+    //         setIsError(true)
+    //     }else if(value>50){
+    //         setIsError(true)
+    //         setErrorMsg("Not more than 50 questions allowed")
+
+    //     }else if(isNaN(value)){
+    //         setIsError(true)
+    //         setErrorMsg("Please provide Input in Number")
+    //     }else if(value<=0){
+    //         setIsError(true)
+    //         setErrorMsg("Number of questions must be above 0")
+    //     }else{
+    //         setErrorMsg("")
+    //         setIsError(false)
+    //     }
+    // }
+    
    
 
   return <div>
@@ -87,16 +112,20 @@ function Landingpage() {
             <h3>Select Difficulty level</h3>
             <select value={difficultyLvl} onChange={(e)=>handQuestionLvlDifficulty(e)}>
             <option value="" key="type-all">All</option>
-            <option value="multiple" key="d-1">Easy</option>
-            <option value="boolean" key="d-2">Medium</option>
-            <option value="boolean" key="d-3">Difficult</option>
+            <option value="easy" key="d-1">Easy</option>
+            <option value="medium" key="d-2">Medium</option>
+            <option value="difficult" key="d-3">Difficult</option>
             </select>
             <h3>Select Number of Questions</h3>
-            <input onChange={(e)=>handNumberOfQues(e)} value={numberOfQues} type="number" />
-          {console.log(quizCategories)}
+            <input onChange={(e)=>handNumberOfQues(e)} value={numberOfQues} type="number" style={{marginBottom:"3%"}} placeholder="Default 5"/>
+          {/* {console.log(quizCategories)} */}
           
           <div>
-    <StartQuizBtn/>
+
+    <StartQuizBtn isError={setIsError} errorMsg={setErrorMsg}/>
+    <div>{(isError)?errorMsg:""} </div>
+    {/* {console.log("error", errorMsg, isError)} */}
+
     </div>
     </div>):"Loading..."}
       </div>

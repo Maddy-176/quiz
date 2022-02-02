@@ -14,15 +14,17 @@
     margin: 2.5%;
     width:75%;
     background-color: rgba(224, 218, 211, 0.979);
-    color:black;
+    color:blue;
     font-size:16px;
-    font-weight:400
+    font-weight:500
 }
 
 .question{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 00;
     margin-bottom: 5%;
+    color:blue;
+
 }
 
 .btn-container{
@@ -32,9 +34,9 @@
 
 .next-btn{
     position:relative;
-    float:right;
-    margin-right:-50%;
-    width:60%
+    /* float:right; */
+    /* margin-right:-50%; */
+    width:auto
 
 }
 
@@ -47,3 +49,27 @@
 .home{
     margin:1%
 }
+
+.home>svg{
+    color:blue
+}
+
+.disabled{
+    background-color: rgba(224, 218, 211, 0.979) !important;
+    color:blue !important;
+    font-weight: 500;
+}
+
+
+
+.selected{
+    background-color: #ff6347 !important;
+    color:white !important
+
+}
+
+.correct{
+    background-color: green !important;
+    color:white !important
+}
+

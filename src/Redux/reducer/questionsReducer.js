@@ -2,11 +2,12 @@ const initialState={
     ques_category:'',
     ques_difficulty:'',
     ques_type:'',
-    ques_amount:50,
+    ques_amount:5,
     questions:[],
     index:0,
     score:0,
     loading:false,
+    ques_attempted:0,
 
 }
 
@@ -54,6 +55,11 @@ const quesReducer=(state=initialState,action)=>{
                 ...state,
                 index:action.index
             }
+        case 'QUESTION_ATTEMPTED':
+            return {
+                ...state,
+                ques_attempted:action.attempted
+                }
         default:
             return state;
     }

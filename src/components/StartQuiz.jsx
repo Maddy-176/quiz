@@ -1,15 +1,14 @@
-import React from 'react';
+import React,{useState, useEffect,useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
-function StartQuiz() {
-
+function StartQuiz({isDisabled}) {
     const selectQuesCategory= useSelector(state=>state.ques.ques_category);
     const difficultyLvl= useSelector(state=>state.ques.ques_difficulty);
     const questionType= useSelector(state=>state.ques.ques_type);
     const numberOfQues= useSelector(state=>state.ques.ques_amount);
     const index= useSelector(state=>state.ques.index);
-
+    const [disableBtn, setDisableBtn]= useState(true)
 
     const dispatch = useDispatch()
     const navigate= useNavigate();
@@ -28,7 +27,16 @@ function StartQuiz() {
           })
     }
 
+    useEffect(()=>{
+        setDisableBtn(isDisabled)
+    },[isDisabled])
+
+   
+
+
+
     const handleRequest= ()=>{
+
         let api=`https://opentdb.com/api.php?amount=${numberOfQues}`
 
         if(selectQuesCategory.length){
@@ -61,18 +69,24 @@ function StartQuiz() {
                 score:0
             })
 
+            dispatch({
+                type:"QUESTION_ATTEMPTED",
+                attempted:0
+            })
+
+
 
         }
         navigate("/questions");
 
     }
-
-    
+  
+   
 
   
   return <div>
      
-      <button  onClick={(e)=>handleRequest(e)}>Start Quiz</button>
+      <button  onClick={(e)=>handleRequest(e)} disabled={disableBtn}>Start Quiz</button>
   </div>;
 }
 
