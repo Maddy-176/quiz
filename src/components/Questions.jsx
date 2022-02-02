@@ -43,7 +43,8 @@ function Questions() {
         }
        
         if(index===questions.length-1){
-          navigate("/result")
+          setTimeout(()=>navigate("/result"),2000)
+          
 
 
         }
