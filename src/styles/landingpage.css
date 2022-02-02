@@ -1,11 +1,27 @@
+
 .landing-page{
     font-family: 'Times New Roman', Times, serif;
-    font-size: medium;
+    font-size: 25px;
     text-align: center;
+
+    text-shadow: white 0px 0px 2px;
+    color: #800000;
+    margin-top: 1%;
+}
+select,input{
+    width:21%;
+    font-size:medium;
+    height:30px;
+    margin:-1%
 }
 
 .app-title{
     font-weight: 700;
     font-size: xxx-large;
-    color: blue;
+    color: #800000;
+}
+
+.user-input{
+    margin: -1%;
+    padding: 2%;
 }

@@ -91,6 +91,7 @@ function Landingpage() {
       <div className='landing-page'>
       <p className='app-title'>Welcome to Quiz App</p>
       {!loading?( <div>
+          <div className='user-input'> 
       <h3>Select Category</h3>
       <select value={selectQuesCategory} onChange={(e)=>handleQuestionCategoryChange(e)}>
           <option defaultValue>All</option>
@@ -100,15 +101,16 @@ function Landingpage() {
           </option>
       ))}
       </select>
-
-
+      </div>
+    <div  className='user-Input'>
       <h3>Select Question type</h3>
       <select value={questionType} onChange={(e)=>handQuestionType(e)}>
             <option value="" key="type-all">All</option>
             <option value="multiple" key="type-1">Multiple Choice</option>
             <option value="boolean" key="type-2">True/False</option>
             </select>
-            
+            </div>
+            <div className='user-input'> 
             <h3>Select Difficulty level</h3>
             <select value={difficultyLvl} onChange={(e)=>handQuestionLvlDifficulty(e)}>
             <option value="" key="type-all">All</option>
@@ -116,8 +118,11 @@ function Landingpage() {
             <option value="medium" key="d-2">Medium</option>
             <option value="difficult" key="d-3">Difficult</option>
             </select>
+            </div>
+            <div  className='user-input'> 
             <h3>Select Number of Questions</h3>
             <input onChange={(e)=>handNumberOfQues(e)} value={numberOfQues} type="number" style={{marginBottom:"3%"}} placeholder="Default 5"/>
+            </div>
           {/* {console.log(quizCategories)} */}
           
           <div>
@@ -129,7 +134,6 @@ function Landingpage() {
     </div>
     </div>):"Loading..."}
       </div>
-     
   </div>;
 }
 

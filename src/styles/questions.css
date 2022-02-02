@@ -6,24 +6,32 @@
     margin-top: 7%;
 }
 
-.card{
-    box-shadow: 4px 4px 1px 2px #e2e0e0;
+.ques-header{
+    font-size: 25px;
+    font-weight: 800;
+    color:#920d0d;
 
+}
+
+.card{
+    box-shadow: 4px 4px 1px 2px #aaa7a7;
+    background-color: none;
+    opacity: 0.7;
 }
 .option{
     margin: 2.5%;
     width:75%;
     background-color: rgba(224, 218, 211, 0.979);
-    color:blue;
+    color:#920d0d;
     font-size:16px;
-    font-weight:500
+    font-weight:600
 }
 
 .question{
     font-size: 20px;
     font-weight: 00;
     margin-bottom: 5%;
-    color:blue;
+    color:#920d0d;
 
 }
 
@@ -51,12 +59,12 @@
 }
 
 .home>svg{
-    color:blue
+    color:#920d0d
 }
 
 .disabled{
     background-color: rgba(224, 218, 211, 0.979) !important;
-    color:blue !important;
+    color:#920d0d !important;
     font-weight: 500;
 }
 

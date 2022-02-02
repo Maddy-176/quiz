@@ -126,7 +126,8 @@ function Questions() {
       <div className="ques-container">
       <div className='card' style={{width:"40%"}}>
           <div className='card-body'>
-              <div className="question">Q{index+1} &nbsp;&nbsp;{decode(question?.question)}</div>
+            <div className="ques-header">Question&nbsp;{index+1}</div>
+              <div className="question"> &nbsp;&nbsp;{decode(question?.question)}</div>
               {options?.map((option,index)=>{
                   return(
                     <button className={`option btn btn-primary ${optionClasses(option)}`} index={index} 
