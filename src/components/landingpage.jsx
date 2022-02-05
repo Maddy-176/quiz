@@ -5,18 +5,19 @@ import StartQuizBtn from './StartQuiz';
 
 function Landingpage() {
 
-    const [quizCategories, setQuizCategories]= useState(null);
-    const [isError, setIsError] = useState(true);
+    const [quizCategories, setQuizCategories]= useState(null); // sets categories for the quiz
+    const [isError, setIsError] = useState(true);  
     const [errorMsg, setErrorMsg] = useState("");
-    const loading =  useSelector(state=>state.ques.loading);
-    const selectQuesCategory= useSelector(state=>state.ques_category);
-    const difficultyLvl= useSelector(state=>state.ques_difficulty);
-    const questionType= useSelector(state=>state.ques_type);
-    const numberOfQues= useSelector(state=>state.ques_amount)
+    const loading =  useSelector(state=>state.ques.loading); //if the ques is still loading or not
+    const selectQuesCategory= useSelector(state=>state.ques_category); // gets the ques category from store
+    const difficultyLvl= useSelector(state=>state.ques_difficulty);  //gets state of difficulty level from store
+    const questionType= useSelector(state=>state.ques_type);   // gets sttae of questiontype from store
+    const numberOfQues= useSelector(state=>state.ques_amount)  //gets number of ques from store
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()  //to dispatch the action
 
-    const api="https://opentdb.com/api_category.php"
+    const api="https://opentdb.com/api_category.php"  //api from where question data is being fetched
+
     useEffect(()=>{
         const handleLoading = (value) => {
             dispatch({
@@ -26,7 +27,7 @@ function Landingpage() {
           }
           handleLoading(true);
          
-        fetch(api)
+        fetch(api)  // fetching the api here
         .then((result)=>result.json())
         .then((res)=>{setQuizCategories(res.trivia_categories)
         handleLoading(false)})
@@ -40,21 +41,21 @@ function Landingpage() {
         })
     }
 
-    const handQuestionLvlDifficulty=(e)=>{
+    const handleQuestionLvlDifficulty=(e)=>{
         dispatch({
             type:"CHANGE_DIFFICULTY",
             value:e.target.value
         })
     }
 
-    const handQuestionType=(e)=>{
+    const handleQuestionType=(e)=>{
         dispatch({
             type:"CHANGE_TYPE",
             value:e.target.value
         })
     }
 
-    const handNumberOfQues=(e)=>{
+    const handleNumberOfQues=(e)=>{
         dispatch({
             type:"CHANGE_AMOUNT",
             value:e.target.value
@@ -104,7 +105,7 @@ function Landingpage() {
       </div>
     <div  className='user-Input'>
       <h3>Select Question type</h3>
-      <select value={questionType} onChange={(e)=>handQuestionType(e)}>
+      <select value={questionType} onChange={(e)=>handleQuestionType(e)}>
             <option value="" key="type-all">All</option>
             <option value="multiple" key="type-1">Multiple Choice</option>
             <option value="boolean" key="type-2">True/False</option>
@@ -112,7 +113,7 @@ function Landingpage() {
             </div>
             <div className='user-input'> 
             <h3>Select Difficulty level</h3>
-            <select value={difficultyLvl} onChange={(e)=>handQuestionLvlDifficulty(e)}>
+            <select value={difficultyLvl} onChange={(e)=>handleQuestionLvlDifficulty(e)}>
             <option value="" key="type-all">All</option>
             <option value="easy" key="d-1">Easy</option>
             <option value="medium" key="d-2">Medium</option>
@@ -121,14 +122,14 @@ function Landingpage() {
             </div>
             <div  className='user-input'> 
             <h3>Select Number of Questions</h3>
-            <input onChange={(e)=>handNumberOfQues(e)} value={numberOfQues} type="number" style={{marginBottom:"3%"}} placeholder="Default 5"/>
+            <input onChange={(e)=>handleNumberOfQues(e)} value={numberOfQues} type="number" style={{marginBottom:"3%"}} placeholder="Default 5"/>
             </div>
           {/* {console.log(quizCategories)} */}
           
           <div>
 
-    <StartQuizBtn isError={setIsError} errorMsg={setErrorMsg}/>
-    <div>{(isError)?errorMsg:""} </div>
+    <StartQuizBtn isError={setIsError} errorMsg={setErrorMsg}/> {/* Fetches teh quiz button here*/}
+    <div>{(isError)?errorMsg:""} </div> {/* in development stage. it will show error if a user submits an empty data*/}
     {/* {console.log("error", errorMsg, isError)} */}
 
     </div>

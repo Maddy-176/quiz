@@ -26,6 +26,7 @@ function Questions() {
     let dispatch= useDispatch();
     const navigate= useNavigate();
 
+    //this function is used to dispatch the score if the answer is correct and also set the user answer if attemopted
     const handleUserAnswer=(e)=>{
       
         setOptionSelected(true);
@@ -51,6 +52,7 @@ function Questions() {
 
     }
 
+    //function to handle the next button. 
     const handleNext=()=>{
       if(index<questions.length-1){
         dispatch({
@@ -62,7 +64,7 @@ function Questions() {
         setIsDisabled(false)
 
       }else{
-        navigate("/result")
+        navigate("/result") //navigates to result if the last index of the question is reached
 
       }
     }
@@ -80,6 +82,8 @@ function Questions() {
     //   }
     // }
 
+
+    //this function is used to change the color of button based on correct, incorrected, unattemoted answers
     const optionClasses=(option)=>{
       if(userAnswer===null){
         return ``
@@ -112,17 +116,18 @@ function Questions() {
   
     useEffect(()=>{
         if(!questions) return ;
-        const answers=[correct_answer,...(question?.incorrect_answers||[])]
-        answers.sort((a,b)=> (0.5-Math.random()))
-        setOptions(answers)
+        const answers=[correct_answer,...(question?.incorrect_answers||[])] //merging the incorret options and correct answer in an array
+        answers.sort((a,b)=> (0.5-Math.random())) //reshefufling the options in random order
+        setOptions(answers) //setting the random shiffled options 
         
 
     },[question])
+
   return <div >
       {!loading?(
         <div>
           <div className='home'>
-          <FontAwesomeIcon icon={faHome}  size="lg" onClick={()=>navigate("/")}/>
+          <FontAwesomeIcon icon={faHome}  size="lg" onClick={()=>navigate("/")}/> 
           </div>
       <div className="ques-container">
       <div className='card' style={{width:"40%"}}>

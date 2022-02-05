@@ -5,6 +5,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
 import "../styles/result.css"
 
+//this function displays the total score 
 function TotalScore() {
    
   let navigate=useNavigate();
@@ -14,11 +15,11 @@ function TotalScore() {
 
     const redirect=()=>{
       navigate("/")
-      window.location.reload();
+      window.location.reload(); //refreshes the windows when redirected to home . This sets the redux state to initial state
     }
   return <div>
      <div className='home'>
-          <FontAwesomeIcon icon={faHome}  size="lg" onClick={()=>redirect()}/>
+          <FontAwesomeIcon icon={faHome}  size="lg" onClick={()=>redirect()}/> {/* clicking on the icon redirect to home page */}
           </div>
           <div className="result-container">
         <div>Thanks for Attending the Quiz</div>

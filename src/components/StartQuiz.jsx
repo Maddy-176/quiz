@@ -4,16 +4,19 @@ import { useNavigate } from "react-router-dom";
 import "../styles/questions.css"
 
 function StartQuiz({isDisabled}) {
-    const selectQuesCategory= useSelector(state=>state.ques.ques_category);
-    const difficultyLvl= useSelector(state=>state.ques.ques_difficulty);
-    const questionType= useSelector(state=>state.ques.ques_type);
-    const numberOfQues= useSelector(state=>state.ques.ques_amount);
-    const index= useSelector(state=>state.ques.index);
+
+    
+    const selectQuesCategory= useSelector(state=>state.ques.ques_category); //fetches the state of ques category of difficulty level from store
+    const difficultyLvl= useSelector(state=>state.ques.ques_difficulty); //fetches the state of difficulty level from store
+    const questionType= useSelector(state=>state.ques.ques_type); //fetches the state of ques type  from store
+    const numberOfQues= useSelector(state=>state.ques.ques_amount);  //fetches number of Ques from store
+    const index= useSelector(state=>state.ques.index); //fetches index of questions from store
     const [disableBtn, setDisableBtn]= useState(true)
 
-    const dispatch = useDispatch()
-    const navigate= useNavigate();
+    const dispatch = useDispatch() //for dispatching actions
+    const navigate= useNavigate(); //for routers
 
+    //action creator for setting questions
     const setQuestions=(values)=>{
         dispatch({
             type:'SET_QUESTIONS',
@@ -21,6 +24,7 @@ function StartQuiz({isDisabled}) {
         })
     }
 
+    //actions creator for changing loading
     const changeLoading=(value)=>{
         dispatch({
             type: "CHANGE_LOADING",
@@ -35,7 +39,7 @@ function StartQuiz({isDisabled}) {
    
 
 
-
+//function to handle question request
     const handleRequest= ()=>{
 
         let api=`https://opentdb.com/api.php?amount=${numberOfQues}`
@@ -78,7 +82,7 @@ function StartQuiz({isDisabled}) {
 
 
         }
-        navigate("/questions");
+        navigate("/questions"); //navigates to question component
 
     }
   
